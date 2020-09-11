@@ -1,4 +1,4 @@
-from sigit_student import SigitStudent
+from core.models.sigit_student import SigitStudent
 
 
 class SigitCourse:

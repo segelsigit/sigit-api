@@ -1,14 +1,13 @@
 import json
 
-from flask import Flask, jsonify
-from flask import request
+from flask import jsonify, request
 from flask_swagger import swagger
+
+from core.models.sigit_course import SigitCourse
+from core.models.sigit_student import SigitStudent
 from factory import create_app
-from sigit_course import SigitCourse
-from sigit_student import SigitStudent
 
 app = create_app()
-
 sigit_course = SigitCourse()
 
 
@@ -51,7 +50,3 @@ def update_student():
     details = json.loads(request.data)
     sigit_course.update_students_details(details=details)
     return details, 200
-
-
-if __name__ == '__main__':
-    app.run()
