@@ -27,3 +27,9 @@ class SigitCourse:
             if student.name == details["name"]:
                 student.quarantine_days_left = details["quarantine_days_left"]
                 student.has_symptoms = details["has_symptoms"]
+
+    def get_student(self, student_name):
+        for student in self.quarantine_students:
+            if student.name == student_name:
+                return student
+        raise Exception("No student")

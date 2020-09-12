@@ -10,11 +10,16 @@ student = Blueprint('student_pave', __name__,
 
 @student.route('/student', methods=['GET'])
 def quarantine():
-    """
-    Get all Students in quarantine
-    :return:
-    """
     return jsonify(course.get_quarantine_students()), 200
+
+
+@student.route('/student/<student_name>')
+def fetch_student(student_name):
+    try:
+        sigit_student = course.get_student(student_name)
+        return jsonify(sigit_student.__dict__), 200
+    except Exception:
+        return "There is no such student", 404
 
 
 @student.route('/student', methods=['POST'])
@@ -38,5 +43,9 @@ def remove_student_from_quatantine(student_name):
 @student.route('/student', methods=['PUT'])
 def update_student():
     details = json.loads(request.data)
-    course.update_students_details(details=details)
-    return details, 200
+    try:
+        course.get_student(details["name"])
+        course.update_students_details(details=details)
+        return details, 200
+    except Exception:
+        return "There is no such student", 404
