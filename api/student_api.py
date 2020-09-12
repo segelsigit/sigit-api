@@ -8,7 +8,7 @@ student = Blueprint('student_pave', __name__,
                     template_folder='templates')
 
 
-@student.route('/students', methods=['GET'])
+@student.route('/student', methods=['GET'])
 def quarantine():
     """
     Get all Students in quarantine
